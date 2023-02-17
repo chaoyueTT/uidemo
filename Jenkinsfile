@@ -32,7 +32,7 @@ pipeline{
             steps {
                sh 'pwd && ls -alh'
                sh 'node -v'
-               sh 'cd ${WS} && npm install --registry=https://registry.npmmirror.com --no-fund && npm run build:prod'
+               sh 'npm install --registry=https://registry.npmmirror.com --no-fund && npm run build:prod'
             }
         }
  
