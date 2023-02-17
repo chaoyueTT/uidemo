@@ -32,7 +32,7 @@ pipeline{
             steps {
                sh 'pwd && ls -alh'
                sh 'node -v'
-               sh 'npm install --registry=https://registry.npmmirror.com --no-fund && npm run build:prod'
+               sh 'cd "/var/lib/jenkins/workspace/uidemo_main@2" && npm install --registry=https://registry.npmmirror.com --no-fund && npm run build:prod'
             }
         }
  
