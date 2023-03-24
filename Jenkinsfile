@@ -30,9 +30,11 @@ pipeline{
                  }
             }
             steps {
-               sh 'pwd && ls -alh'
-               sh 'node -v'
-               sh 'npm install --registry=https://registry.npmmirror.com --no-fund && npm run build:prod'
+                sh 'pwd && ls -alh'
+                sh 'node -v'
+                sh 'mkdir ${WORKSPACE}/.npm'
+                sh 'npm install --registry=https://registry.npmmirror.com --no-fund --cache ${WORKSPACE}/.npm/.cache'
+                sh 'npm run build:prod'
             }
         }
  
