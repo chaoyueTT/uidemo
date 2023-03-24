@@ -36,7 +36,11 @@ pipeline{
                 sh 'npm run build:prod'
             }
         }
- 
+        stage('Copy JAR files to original workspace'){
+            steps {
+               sh "scp -r ${env.WORKSPACE}@2/dist ${env.WORKSPACE}/"
+            }
+        }
         stage('3.打包'){
             steps {
                sh 'pwd && ls -alh'
