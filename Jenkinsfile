@@ -53,7 +53,7 @@ pipeline{
             steps {
                sh 'pwd && ls -alh'
                sh 'docker rm -f ${IMAGE_NAME} || true && docker rmi $(docker images -q -f dangling=true) || true'
-               sh 'docker run -d -p 8889:80 --name ${IMAGE_NAME} --link ruoyi-admin:ruoyi-admin ${IMAGE_NAME}'
+               sh 'docker run -d -p 8889:80 --name ${IMAGE_NAME}'
             }
         }
     }
