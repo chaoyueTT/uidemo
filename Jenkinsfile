@@ -26,6 +26,7 @@ pipeline{
             steps {
                 script {
                     docker.image('node:12-alpine').inside { // 使用 docker 镜像执行步骤
+                        sh "chmod 777 -R ${env.WORKSPACE}"
                         sh 'pwd && ls -alh'
                         sh 'node -v'
                         sh 'npm install --registry=https://registry.npmmirror.com --no-fund --cache ${WORKSPACE}/.npm/.cache'
