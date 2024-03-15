@@ -1,6 +1,6 @@
 pipeline{
-    agent docker{
-       environment {
+    agent docker
+    environment {
       // 镜像名称
       IMAGE_NAME = "ruoyi-ui"
       // 工作目录
@@ -10,7 +10,6 @@ pipeline{
       // 自定义的构建参数
       PROFILE = "prod"
     }
- 
     //定义流水线的加工流程
     stages {
         //流水线的所有阶段
@@ -22,7 +21,6 @@ pipeline{
                sh 'git --version'
             }
         }
- 
         stage('2.编译'){
             agent {
                 docker {
@@ -47,7 +45,6 @@ pipeline{
                sh 'docker build --build-arg PROFILE=${PROFILE} -t ${IMAGE_NAME} .'
             }
         }
- 
         stage('4.部署'){
             // 删除容器和虚悬镜像
             steps {
@@ -57,6 +54,4 @@ pipeline{
             }
         }
     }
-    }
-   
 }
