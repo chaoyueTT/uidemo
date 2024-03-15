@@ -1,5 +1,5 @@
 pipeline{
-    agent any
+    agent docker
     environment {
       // 镜像名称
       IMAGE_NAME = "ruoyi-ui"
