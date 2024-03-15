@@ -1,6 +1,6 @@
 pipeline{
-    agent docker
-    environment {
+    agent docker{
+       environment {
       // 镜像名称
       IMAGE_NAME = "ruoyi-ui"
       // 工作目录
@@ -57,4 +57,6 @@ pipeline{
             }
         }
     }
+    }
+   
 }
