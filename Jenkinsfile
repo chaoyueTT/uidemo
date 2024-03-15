@@ -22,16 +22,16 @@ pipeline{
             }
         }
         stage('2.编译'){
-            agent {
-                docker {
-                    image 'node:12-alpine'
-                 }
-            }
+            agent any // 在这里不需要使用 agent docker
             steps {
-                sh 'pwd && ls -alh'
-                sh 'node -v'
-                sh 'npm install --registry=https://registry.npmmirror.com --no-fund --cache ${WORKSPACE}/.npm/.cache'
-                sh 'npm run build:prod'
+                script {
+                    docker.image('node:12-alpine').inside { // 使用 docker 镜像执行步骤
+                        sh 'pwd && ls -alh'
+                        sh 'node -v'
+                        sh 'npm install --registry=https://registry.npmmirror.com --no-fund --cache ${WORKSPACE}/.npm/.cache'
+                        sh 'npm run build:prod'
+                    }
+                }
             }
         }
         stage('Copy JAR files to original workspace'){
